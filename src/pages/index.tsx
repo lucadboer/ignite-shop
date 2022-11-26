@@ -2,6 +2,8 @@ import Image from "next/image"
 
 import { styled } from "../styles"
 import { HomeContainer, Product } from "../styles/pages/home"
+import 'keen-slider/keen-slider.min.css'
+import {useKeenSlider}  from 'keen-slider/react'
 
 import shirt1 from '../assets/camisetas/1.png'
 import shirt2 from '../assets/camisetas/2.png'
@@ -21,9 +23,18 @@ const Button = styled('button', {
 })
 
 export default function Home() {
+
+  const [sliderRef] = useKeenSlider({
+    mode: "free-snap",
+    slides: {
+      perView: 3,
+      spacing: 48,
+    },
+  })
+
   return (
-    <HomeContainer>
-      <Product>
+    <HomeContainer ref={sliderRef} className="keen-slider">
+      <Product className="keen-slider__slide">
         <Image src={shirt1} width={520} height={480} alt="" />
 
         <footer>
@@ -34,8 +45,30 @@ export default function Home() {
         </footer>
       </Product>
 
-      <Product>
+      <Product className="keen-slider__slide">
         <Image src={shirt2} width={520} height={480} alt="" />
+
+        <footer>
+          <span>
+          Camiseta Beyond the Limits
+          </span>
+          <strong>R$ 79,90</strong>
+        </footer>
+      </Product>
+
+      <Product className="keen-slider__slide">
+        <Image src={shirt3} width={520} height={480} alt="" />
+
+        <footer>
+          <span>
+          Camiseta Beyond the Limits
+          </span>
+          <strong>R$ 79,90</strong>
+        </footer>
+      </Product>
+
+      <Product className="keen-slider__slide">
+        <Image src={shirt4} width={520} height={480} alt="" />
 
         <footer>
           <span>
