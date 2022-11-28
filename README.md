@@ -1,6 +1,6 @@
 # Ignite Shop
 
-![preview1](./.github/preview2.png)
+![preview1](./.github/preview1.png)
 
 > Trilha Ignite
 
