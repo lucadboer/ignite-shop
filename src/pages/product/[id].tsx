@@ -45,6 +45,12 @@ export default function Product({ product }: ProductProps) {
 }
 
 export const getStaticProps: GetStaticProps<any, {id: string}> = async ({ params }) => {
+  if(!params) {
+    return {
+      notFound: true // Caso não exista parametros, retorna um 404
+    }
+  }
+
   const productId = params.id 
 
   const product = await stripe.products.retrieve(productId, {
