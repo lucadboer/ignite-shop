@@ -10,6 +10,31 @@ export const ProductContainer = styled('main', {
   margin: '0 auto'
 })
 
+export const SkeletonContainer = styled('div', {
+  display: 'grid',
+  gridTemplateColumns: '1fr 1fr',
+  
+  gap: '4.5rem',
+
+  maxWidth: 1110,
+  margin: '0 auto',
+
+  div: {
+    marginTop: 20,
+    display: 'flex',
+    flexDirection: 'column',
+    gap: 15,
+
+    // div: {
+    //   marginTop: 40,
+    //   display: 'flex',
+    //   flexDirection: 'column',
+    //   gap: 15,
+    // }
+  },
+},
+  )
+
 export const ImageContainer = styled('section', {
   display: "flex",
   justifyContent:"center",
@@ -43,8 +68,10 @@ export const ProductDetails = styled('section', {
   },
 
   p: {
+    maxWidth: 520,
     fontSize: '$md',
     color: '$gray300',
+    lineHeight: 1.6,
     marginTop: '2.5rem'
   },
 
