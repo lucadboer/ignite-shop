@@ -13,7 +13,9 @@ export default function App({ Component, pageProps }: AppProps) {
   return (
     <Container>
       <Header>
-        <Image src={logoIgnite.src} width={129.74} height={52} alt="" />
+        <Link href={'/'}>
+          <Image src={logoIgnite.src} width={129.74} height={52} alt="" />
+        </Link>
       </Header>
 
       <Component {...pageProps} />
