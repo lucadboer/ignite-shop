@@ -4,7 +4,6 @@ import { Container, Header } from '../styles/pages/app'
 
 import logoIgnite from '../assets/logo-ignite.svg'
 import Image from 'next/image'
-import Home from '.'
 import Link from 'next/link'
 
 globalStyles()
