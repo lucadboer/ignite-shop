@@ -1,6 +1,7 @@
 import type { AppProps } from 'next/app'
 import { globalStyles } from '../styles/global'
 import { Container, Header } from '../styles/pages/app'
+import '../styles/spinner.css'
 
 import logoIgnite from '../assets/logo-ignite.svg'
 import Image from 'next/image'

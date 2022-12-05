@@ -1,9 +1,12 @@
 import axios from "axios"
 import { GetStaticProps } from "next"
+import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
+import { useState } from "react"
 import Stripe from "stripe"
 import { Skeleton } from "../../components/Skeleton"
+import { Spinner } from "../../components/Spinner"
 import { stripe } from "../../lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails, SkeletonContainer } from "../../styles/pages/product"
 import { formattedMoney } from "../../utils/formatter"
@@ -20,10 +23,12 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
   const { isFallback } = useRouter()
 
   async function handleBuyProduct() {
       try {
+        setIsCreatingCheckoutSession(true)
         const response = await axios.post('/api/checkout', {
           priceId: product.priceId,
         })
@@ -32,6 +37,7 @@ export default function Product({ product }: ProductProps) {
 
         window.location.href = checkoutUrl
       } catch (error) {
+        setIsCreatingCheckoutSession(false)
         alert('Falha na compra')
       }      
     }
@@ -45,18 +51,26 @@ export default function Product({ product }: ProductProps) {
   }
 
   return (
-    <ProductContainer>
-      <ImageContainer>
-        <Image src={product.imageUrl} width={520} height={480} alt='Foto do produto' />
-      </ImageContainer>
-      <ProductDetails>
-        <h1>{product.name}</h1>
-        <span>{formattedMoney(product.price / 100)}</span>
-        <p>{product.description}</p>
-        <p>Criada no Brasil e feita pro mundo, todos nossos produtos são feitos sob demanda para você usando tecnologia de ponta na estamparia. Qualidade garantida pela Reserva INK.</p>
-        <button onClick={handleBuyProduct}>Comprar agora</button>
-    </ProductDetails>
-    </ProductContainer>
+    <>
+      <Head>
+        <title>{product.name} | Ignite Shop</title>
+      </Head>
+
+      <ProductContainer>
+        <ImageContainer>
+          <Image src={product.imageUrl} width={520} height={480} alt='Foto do produto' />
+        </ImageContainer>
+        <ProductDetails>
+          <h1>{product.name}</h1>
+          <span>{formattedMoney(product.price / 100)}</span>
+          <p>{product.description}</p>
+          <p>Criada no Brasil e feita pro mundo, todos nossos produtos são feitos sob demanda para você usando tecnologia de ponta na estamparia. Qualidade garantida pela Reserva INK.</p>
+          <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>
+            {isCreatingCheckoutSession ? <Spinner /> : 'Comprar produto'}
+          </button>
+      </ProductDetails>
+      </ProductContainer>
+    </>
   )
 }
 
