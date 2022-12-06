@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { BagMenuContainer, CloseButton, ImageContainer, ProductOnBag } from "../styles/BagMenu";
+import { BagMenuContainer, CloseButton, ImageContainer, ProductContainer, ProductOnBag } from "../styles/BagMenu";
 
 import shirt from '../assets/camisetas/2.png'
 import { X } from "phosphor-react";
@@ -19,26 +19,42 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
         <X size={24} />
       </CloseButton>
       <h2>Sacola de compras</h2>
-      <ProductOnBag>
-        <ImageContainer>
-          <Image src={shirt} width={95} height={90} alt='' />
-        </ImageContainer>
-        <div>
-          <span>Camiseta explorer</span>
-          <strong>R$ 79,90</strong>
-          <button>Remover</button>
-        </div>
-      </ProductOnBag>
+
+      <ProductContainer>
+        <ProductOnBag>
+          <ImageContainer>
+            <Image src={shirt} width={95} height={90} alt='' />
+          </ImageContainer>
+          <div>
+            <span>Camiseta explorer</span>
+            <strong>R$ 79,90</strong>
+            <button>Remover</button>
+          </div>
+        </ProductOnBag>
+
+        <ProductOnBag>
+          <ImageContainer>
+            <Image src={shirt} width={95} height={90} alt='' />
+          </ImageContainer>
+          <div>
+            <span>Camiseta explorer</span>
+            <strong>R$ 79,90</strong>
+            <button>Remover</button>
+          </div>
+        </ProductOnBag>
+
+
+      </ProductContainer>
 
       <footer>
-        <div>
+        <header>
           <span>Quantidade</span>
-          <strong>Valor total</strong>
-        </div>
-        <div>
           <span>3 itens</span>
-          <strong>R$ 270,00</strong>
-        </div>
+        </header>
+        <main>
+          <span>Valor total</span>
+          <strong>RS 170,00</strong>
+        </main>
 
         <button>Finalizar a compra</button>
       </footer>

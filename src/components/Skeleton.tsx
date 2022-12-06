@@ -3,6 +3,7 @@ import "skeleton-elements/css";
 
 export function Skeleton() {
   const effect = 'wave'
+
   return (
     <>
       <SkeletonBlock tag="div" width="500px" height="580px" borderRadius="6px" effect={effect} />

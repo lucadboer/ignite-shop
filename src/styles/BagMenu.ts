@@ -1,14 +1,17 @@
 import { styled } from "@stitches/react";
 
 export const BagMenuContainer = styled('div', {
-  position: "absolute",
-  zIndex: 4,
+  position: "fixed",
+  zIndex: 1,
   top: 0,
   right: 0,
+  bottom: 0,
   width: '100%',
   maxWidth: '30rem',
-  height: '100vh',
   padding: '3rem',
+
+  display: "flex",
+  flexDirection: "column",
 
   background: '$gray800',
   boxShadow: '0px 0px 15px 2px #000',
@@ -18,7 +21,50 @@ export const BagMenuContainer = styled('div', {
   },
 
   'footer': {
-    margin: 'auto 0px'
+    display: "flex",
+    flexDirection: 'column',
+    marginTop: 'auto',
+
+    'header': {
+      display: 'flex',
+      justifyContent: 'space-between',
+      marginBottom: 7,
+      fontSize: '$md',
+      color: '$gray300'
+    },
+
+    'main': {
+      display: 'flex',
+      justifyContent: 'space-between',
+
+      'span': {
+        fontSize: '$md',
+        fontWeight: 'bold'
+      },
+
+      'strong': {
+        fontSize: '$xl',
+      }
+    },
+
+    'button': {
+      height: 60,
+      marginTop: 50,
+      background: '$green500',
+      border: 0,
+      borderRadius: 8,
+
+      fontSize: '$sm',
+      fontWeight: 'bold',
+      color: '$gray100',
+      letterSpacing: 1.25,
+      cursor: 'pointer',
+      transition: 'background 0.2s',
+
+      '&:hover': {
+        background: '$green300',
+      }
+    }
   }
 })
 
@@ -35,6 +81,13 @@ export const CloseButton = styled('button', {
     scale: 1.15,
     color: '$green500',
   }
+})
+
+export const ProductContainer = styled('div', {
+  display: "flex",
+  flexDirection: "column",
+  overflow: "auto",
+  maxHeight: 350,
 })
 
 export const ProductOnBag = styled('div', {
