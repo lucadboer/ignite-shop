@@ -34,7 +34,7 @@ export default function App({ Component, pageProps }: AppProps) {
         </Link>
         <button onClick={handleOpenBag}>
           <Handbag size={24} color='#fff' />
-          <span>1</span>
+          <span>2</span>
         </button>
       </Header>
 
