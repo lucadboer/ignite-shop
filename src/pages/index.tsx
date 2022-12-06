@@ -12,6 +12,7 @@ import Stripe from "stripe"
 import { formattedMoney } from "../utils/formatter"
 
 import { HomeContainer, Product } from "../styles/pages/home"
+import { Handbag } from "phosphor-react"
 
 
 interface HomeProps {
@@ -44,17 +45,22 @@ export default function Home({products}: HomeProps) {
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map(product => {
           return (
-            <Link key={product.id} href={`/product/${product.id}`} prefetch={false}>
-              <Product className="keen-slider__slide">
-              <Image src={product.imageUrl} width={520} height={480} alt="" />
+              <Product key={product.id} className="keen-slider__slide">
+              <Link href={`/product/${product.id}`} prefetch={false}>
+                <Image src={product.imageUrl} width={520} height={480} alt="" />
+              </Link>
               <footer>
-                <span>
-                {product.name}
-                </span>
-                <strong>{formattedMoney(product.price / 100)}</strong>
+                <div>
+                  <span>
+                  {product.name}
+                  </span>
+                  <strong>{formattedMoney(product.price / 100)}</strong>
+                </div>
+                <button>
+                  <Handbag size={24} color='#fff' />
+                </button>
               </footer>
             </Product>
-          </Link>
           )
         })}
       </HomeContainer>

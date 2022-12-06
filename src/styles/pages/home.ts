@@ -26,8 +26,8 @@ export const Product = styled('div', {
 
   'footer': {
     display: "flex",
-    alignItems: "center",
     justifyContent: 'space-between',
+    alignItems: 'center',
     padding: '0 2rem',
     position: "absolute",
     bottom: 0,
@@ -42,15 +42,36 @@ export const Product = styled('div', {
 
     background: '$gray800',
 
-    'span': {
-      color: '$gray100',
-      fontSize: '$md'
+    'div': {
+      display: 'flex',
+      flexDirection: 'column',
+      justifyContent: 'center',
+      gap: 6,
+
+      'span': {
+        color: '$gray100',
+        fontSize: '$md'
+      },
+  
+      'strong': {
+        color: '$green300',
+        fontSize: '$xl'
+      }
     },
 
-    'strong': {
-      color: '$green300',
-      fontSize: '$xl'
+    'button': {
+      background: '$green500',
+      border: 0,
+      borderRadius: 6,
+      padding: '0.6rem 0.75rem',
+      transition: 'all 0.15s',
+      cursor: 'pointer',
+
+      '&:hover': {
+        background: '$green300',
+      }
     }
+
   },
 
   '&:hover': {
