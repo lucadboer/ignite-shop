@@ -3,14 +3,23 @@ import { BagMenuContainer, CloseButton, ImageContainer, ProductContainer, Produc
 
 import shirt from '../assets/camisetas/2.png'
 import { X } from "phosphor-react";
+import { useCart } from "../hooks/useCart";
+import { formattedMoney } from "../utils/formatter";
+import { BagEmpity } from "./BagEmpity";
 
 interface BagMenuProps {
   onBagOpen: () => void
 }
 
 export function BagMenu({ onBagOpen }: BagMenuProps) {
+  const { removeFromCart, cartItems } = useCart()
+
   function handleCloseBagMenu() {
     onBagOpen()
+  }
+
+  function handleRemoveItemFromCart(productId: string) {
+    removeFromCart(productId)
   }
 
   return (
@@ -21,27 +30,26 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
       <h2>Sacola de compras</h2>
 
       <ProductContainer>
-        <ProductOnBag>
-          <ImageContainer>
-            <Image src={shirt} width={95} height={90} alt='' />
-          </ImageContainer>
-          <div>
-            <span>Camiseta explorer</span>
-            <strong>R$ 79,90</strong>
-            <button>Remover</button>
-          </div>
-        </ProductOnBag>
+        {cartItems.length <= 0 && <BagEmpity />}
 
-        <ProductOnBag>
-          <ImageContainer>
-            <Image src={shirt} width={95} height={90} alt='' />
-          </ImageContainer>
-          <div>
-            <span>Camiseta explorer</span>
-            <strong>R$ 79,90</strong>
-            <button>Remover</button>
-          </div>
-        </ProductOnBag>
+        {cartItems.map(product => {
+          return (
+          <>
+            <ProductOnBag key={product.id}>
+              <ImageContainer>
+                <Image src={product.imageUrl} width={95} height={90} alt='' />
+              </ImageContainer>
+              <div>
+                <span>{product.name}</span>
+                <strong>{formattedMoney(product.price / 100)}</strong>
+                <button onClick={() => {
+                  handleRemoveItemFromCart(product.id)
+                }}>Remover</button>
+              </div>
+            </ProductOnBag>
+           </>
+          )
+        })}
 
 
       </ProductContainer>
@@ -49,11 +57,11 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
       <footer>
         <header>
           <span>Quantidade</span>
-          <span>3 itens</span>
+          <span>{cartItems.length} {cartItems.length > 1 ? 'itens' : 'item'}</span>
         </header>
         <main>
           <span>Valor total</span>
-          <strong>RS 170,00</strong>
+          <strong>R$ </strong>
         </main>
 
         <button>Finalizar a compra</button>

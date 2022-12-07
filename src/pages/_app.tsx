@@ -11,10 +11,14 @@ import '../styles/spinner.css'
 import logoIgnite from '../assets/logo-ignite.svg'
 import { BagMenu } from '../components/BagMenu'
 import { useState } from 'react'
+import { CartContextProvider } from '../contexts/CartContext'
+import { useCart } from '../hooks/useCart'
 
 globalStyles()
 
 export default function App({ Component, pageProps }: AppProps) {
+  const { cartQuantity } = useCart()
+
   const [isBagOpen, setIsBagOpen] = useState(false)
 
   function handleOpenBag() {
@@ -27,14 +31,17 @@ export default function App({ Component, pageProps }: AppProps) {
 
 
   return (
-    <Container>
+    <CartContextProvider>
+         <Container>
       <Header>
         <Link href={'/'}>
           <Image src={logoIgnite.src} width={129.74} height={52} alt="" />
         </Link>
         <button onClick={handleOpenBag}>
           <Handbag size={24} color='#fff' />
-          <span>1</span>
+          <span>
+            {cartQuantity}
+          </span>
         </button>
       </Header>
 
@@ -42,5 +49,6 @@ export default function App({ Component, pageProps }: AppProps) {
 
       <Component {...pageProps} />
     </Container>
+    </CartContextProvider>
   )
 }

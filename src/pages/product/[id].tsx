@@ -23,6 +23,8 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
+  
+
   const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
   const { isFallback } = useRouter()
 
@@ -66,7 +68,7 @@ export default function Product({ product }: ProductProps) {
           <p>{product.description}</p>
           <p>Criada no Brasil e feita pro mundo, todos nossos produtos são feitos sob demanda para você usando tecnologia de ponta na estamparia. Qualidade garantida pela Reserva INK.</p>
           <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>
-            {isCreatingCheckoutSession ? <Spinner /> : 'Comprar produto'}
+            {isCreatingCheckoutSession ? <Spinner /> : 'Colocar na sacola'}
           </button>
       </ProductDetails>
       </ProductContainer>

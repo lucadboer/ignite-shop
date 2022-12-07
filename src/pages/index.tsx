@@ -11,18 +11,14 @@ import Stripe from "stripe"
 
 import { formattedMoney } from "../utils/formatter"
 
-import { HomeContainer, Product } from "../styles/pages/home"
+import { HomeContainer, ProductContainer } from "../styles/pages/home"
 import { Handbag } from "phosphor-react"
+import { Product } from "../contexts/CartContext"
+import { useCart } from "../hooks/useCart"
 
 
 interface HomeProps {
-  products: {
-    id: string
-    name: string
-    description: string
-    imageUrl: string
-    price: number
-  }[]
+  products: Product[]
 }
 
 export default function Home({products}: HomeProps) {
@@ -36,6 +32,17 @@ export default function Home({products}: HomeProps) {
     },
   })
 
+  const { addToCart, checkIfItemAlreadyExists } = useCart()
+
+  function handleAddItemToCart(item: Product) {
+    const check = checkIfItemAlreadyExists(item.id)
+    if (check) {
+      return alert('Item já está no carrinho')
+    }
+
+    addToCart(item)
+  }  
+
   return (
     <>
       <Head>
@@ -45,7 +52,7 @@ export default function Home({products}: HomeProps) {
       <HomeContainer ref={sliderRef} className="keen-slider">
         {products.map(product => {
           return (
-              <Product key={product.id} className="keen-slider__slide">
+              <ProductContainer key={product.id} className="keen-slider__slide">
               <Link href={`/product/${product.id}`} prefetch={false}>
                 <Image src={product.imageUrl} width={520} height={480} alt="" />
               </Link>
@@ -56,11 +63,13 @@ export default function Home({products}: HomeProps) {
                   </span>
                   <strong>{formattedMoney(product.price / 100)}</strong>
                 </div>
-                <button>
+                <button onClick={() => {
+                  handleAddItemToCart(product)
+                }}>
                   <Handbag size={24} color='#fff' />
                 </button>
               </footer>
-            </Product>
+            </ProductContainer>
           )
         })}
       </HomeContainer>
