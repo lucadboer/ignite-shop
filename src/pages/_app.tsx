@@ -39,9 +39,13 @@ export default function App({ Component, pageProps }: AppProps) {
         </Link>
         <button onClick={handleOpenBag}>
           <Handbag size={24} color='#fff' />
+<<<<<<< HEAD
           <span>
             {cartQuantity}
           </span>
+=======
+          <span>2</span>
+>>>>>>> 6f0de98076f64ae69870c9dc975de5e3b3a9ad59
         </button>
       </Header>
 
