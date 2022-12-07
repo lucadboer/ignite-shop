@@ -61,11 +61,7 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
         </header>
         <main>
           <span>Valor total</span>
-<<<<<<< HEAD
           <strong>R$ </strong>
-=======
-          <strong>R$ 170,00</strong>
->>>>>>> 6f0de98076f64ae69870c9dc975de5e3b3a9ad59
         </main>
 
         <button>Finalizar a compra</button>
