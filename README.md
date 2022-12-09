@@ -8,9 +8,10 @@ Under Development...
 
 - React
 - TypeScript
-- TailwindCSS
+- Next.js
+- Stitches CSS
 - Axios
-- Zod
+- Stripe
 
 ## 🧑‍💻 Applications
 
@@ -21,7 +22,6 @@ Under Development...
 - Props
 - Components
 - API Consumption
-- useCallback
 
 ## 💛 Contact
 
