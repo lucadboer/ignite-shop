@@ -5,6 +5,7 @@ import { X } from "phosphor-react";
 import { useCart } from "../hooks/useCart";
 import { formattedMoney } from "../utils/formatter";
 import { BagEmpity } from "./BagEmpity";
+import axios from "axios";
 
 interface BagMenuProps {
   onBagOpen: () => void
@@ -13,21 +14,22 @@ interface BagMenuProps {
 export function BagMenu({ onBagOpen }: BagMenuProps) {
   const { removeFromCart, cartItems, sumAllValues } = useCart()
 
-  // async function handleBuyProduct() {
-  //   try {
-  //     setIsCreatingCheckoutSession(true)
-  //     const response = await axios.post('/api/checkout', {
-  //       priceId: product.priceId,
-  //     })
+  async function handleBuyProduct() {
+    try {
+      // setIsCreatingCheckoutSession(true)
+      const response = await axios.post('/api/checkout', {
+        products: cartItems,
+      })
 
-  //     const { checkoutUrl } = response.data
+      const { checkoutUrl } = response.data
 
-  //     window.location.href = checkoutUrl
-  //   } catch (error) {
-  //     setIsCreatingCheckoutSession(false)
-  //     alert('Falha na compra')
-  //   }      
-  // }
+      window.location.href = checkoutUrl
+    } catch (error) {
+      // setIsCreatingCheckoutSession(false)
+      console.log(error);
+      
+    }      
+  }
 
   function handleCloseBagMenu() {
     onBagOpen()
@@ -81,7 +83,7 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
           <strong>{formattedMoney(productsTotal / 100)}</strong>
         </main>
 
-        <button disabled={!cartItems}>Finalizar a compra</button>
+        <button onClick={handleBuyProduct} disabled={!cartItems}>Finalizar a compra</button>
       </footer>
     </BagMenuContainer>
   )

@@ -1,14 +1,15 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { Product } from "../../contexts/CartContext";
 import { stripe } from "../../lib/stripe";
 
 export default async function Checkout(req: NextApiRequest, res: NextApiResponse) {
-  const { priceId } = req.body
+  const { products } = req.body as { products: Product[] }
   
   if (req.method !== 'POST') {
     return res.status(405).json({error: 'Method not allowed'})
   }
 
-  if (!priceId) {
+  if (!products) {
     return res.status(400).json({error: 'Price not found'})
   }
 
@@ -19,10 +20,10 @@ export default async function Checkout(req: NextApiRequest, res: NextApiResponse
     cancel_url: cancelUrl as string,
     success_url: successUrl as string,
     mode: 'payment',
-    line_items: [{
-      price: priceId,
+    line_items: products.map(product => ({
+      price: product.priceId,
       quantity: 1,
-    }]
+    }))
   })
 
   return res.status(201).json({
