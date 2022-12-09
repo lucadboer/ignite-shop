@@ -2,13 +2,13 @@ import { styled } from "@stitches/react";
 
 export const BagMenuContainer = styled('div', {
   position: "fixed",
-  zIndex: 1,
+  zIndex: 2,
   top: 0,
   right: 0,
   bottom: 0,
   width: '100%',
   maxWidth: '30rem',
-  padding: '3rem',
+  padding: '2rem',
 
   display: "flex",
   flexDirection: "column",
@@ -17,7 +17,7 @@ export const BagMenuContainer = styled('div', {
   boxShadow: '0px 0px 15px 2px #000',
 
   'h3': {
-    marginTop: 32,
+    marginTop: 10,
   },
 
   'footer': {
@@ -70,8 +70,9 @@ export const BagMenuContainer = styled('div', {
 
 export const CloseButton = styled('button', {
   position: "absolute",
-  top: 24,
-  right: 24,
+  width: 0,
+  top: -20,
+  right: -380,
   background: "transparent",
   border: 0,
   color: '$gray300',
@@ -109,6 +110,7 @@ export const ProductOnBag = styled('div', {
 
     'button': {
       marginTop: 4,
+      marginLeft: -10,
       marginRight: 'auto',
 
       fontSize: '$sm',

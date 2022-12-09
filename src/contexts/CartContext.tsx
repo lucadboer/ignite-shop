@@ -11,10 +11,10 @@ export interface Product {
 
 interface CartContextData {
   cartItems: Product[]
-  cartQuantity: number
   addToCart: (product: Product) => void
   removeFromCart: (productId: string) => void
   checkIfItemAlreadyExists: (productId: string) => boolean
+  sumAllValues: () => number
 }
 
 interface CartContextProviderProps {
@@ -26,25 +26,26 @@ export const CartContext = createContext({} as CartContextData)
 export function CartContextProvider({ children }: CartContextProviderProps) {
 
   const [cartItems, setCartItems] = useState<Product[]>([])
-  const [cartQuantity, setCartQuantity] = useState(0)
   
   function addToCart(product: Product) {
     setCartItems((state) => [...state, product])
-    setCartQuantity(cartItems.length)
   }
 
   function removeFromCart (producId: string) {
     setCartItems((state) => state.filter((product) => product.id !== producId))
-    setCartQuantity(state => state - 1)
   }
 
   function checkIfItemAlreadyExists(productId: string) {
     return cartItems.some((product) => product.id === productId)
   }
 
+  function sumAllValues() {
+    return cartItems.reduce((sum, product) => sum + product.price, 0)
+  }
+
 
   return (
-    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, checkIfItemAlreadyExists, cartQuantity }}>
+    <CartContext.Provider value={{ cartItems, addToCart, removeFromCart, checkIfItemAlreadyExists, sumAllValues }}>
       {children}
     </CartContext.Provider>
   )

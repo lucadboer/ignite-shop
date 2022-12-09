@@ -1,12 +1,12 @@
-import axios from "axios"
 import { GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
-import { useState } from "react"
+
 import Stripe from "stripe"
 import { Skeleton } from "../../components/Skeleton"
-import { Spinner } from "../../components/Spinner"
+import { Product as ProductData } from "../../contexts/CartContext"
+import { useCart } from "../../hooks/useCart"
 import { stripe } from "../../lib/stripe"
 import { ImageContainer, ProductContainer, ProductDetails, SkeletonContainer } from "../../styles/pages/product"
 import { formattedMoney } from "../../utils/formatter"
@@ -23,26 +23,19 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  
 
-  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
+  const { addToCart, checkIfItemAlreadyExists } = useCart()
+
   const { isFallback } = useRouter()
 
-  async function handleBuyProduct() {
-      try {
-        setIsCreatingCheckoutSession(true)
-        const response = await axios.post('/api/checkout', {
-          priceId: product.priceId,
-        })
-
-        const { checkoutUrl } = response.data
-
-        window.location.href = checkoutUrl
-      } catch (error) {
-        setIsCreatingCheckoutSession(false)
-        alert('Falha na compra')
-      }      
+  function handleAddItemToCart(item: ProductData ) {
+    const check = checkIfItemAlreadyExists(item.id)
+    if (check) {
+      return alert('Item já está no carrinho')
     }
+
+    addToCart(item)  
+  }
 
   if (isFallback) {
     return (
@@ -67,8 +60,10 @@ export default function Product({ product }: ProductProps) {
           <span>{formattedMoney(product.price / 100)}</span>
           <p>{product.description}</p>
           <p>Criada no Brasil e feita pro mundo, todos nossos produtos são feitos sob demanda para você usando tecnologia de ponta na estamparia. Qualidade garantida pela Reserva INK.</p>
-          <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>
-            {isCreatingCheckoutSession ? <Spinner /> : 'Colocar na sacola'}
+          <button onClick={() => {
+            handleAddItemToCart(product)
+          }}>
+            Colocar na sacola
           </button>
       </ProductDetails>
       </ProductContainer>

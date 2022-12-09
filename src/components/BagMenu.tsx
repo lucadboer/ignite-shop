@@ -1,7 +1,6 @@
 import Image from "next/image";
 import { BagMenuContainer, CloseButton, ImageContainer, ProductContainer, ProductOnBag } from "../styles/BagMenu";
 
-import shirt from '../assets/camisetas/2.png'
 import { X } from "phosphor-react";
 import { useCart } from "../hooks/useCart";
 import { formattedMoney } from "../utils/formatter";
@@ -12,7 +11,23 @@ interface BagMenuProps {
 }
 
 export function BagMenu({ onBagOpen }: BagMenuProps) {
-  const { removeFromCart, cartItems } = useCart()
+  const { removeFromCart, cartItems, sumAllValues } = useCart()
+
+  // async function handleBuyProduct() {
+  //   try {
+  //     setIsCreatingCheckoutSession(true)
+  //     const response = await axios.post('/api/checkout', {
+  //       priceId: product.priceId,
+  //     })
+
+  //     const { checkoutUrl } = response.data
+
+  //     window.location.href = checkoutUrl
+  //   } catch (error) {
+  //     setIsCreatingCheckoutSession(false)
+  //     alert('Falha na compra')
+  //   }      
+  // }
 
   function handleCloseBagMenu() {
     onBagOpen()
@@ -21,6 +36,8 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
   function handleRemoveItemFromCart(productId: string) {
     removeFromCart(productId)
   }
+
+  const productsTotal = sumAllValues()
 
   return (
     <BagMenuContainer>
@@ -61,10 +78,10 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
         </header>
         <main>
           <span>Valor total</span>
-          <strong>R$ </strong>
+          <strong>{formattedMoney(productsTotal / 100)}</strong>
         </main>
 
-        <button>Finalizar a compra</button>
+        <button disabled={!cartItems}>Finalizar a compra</button>
       </footer>
     </BagMenuContainer>
   )
