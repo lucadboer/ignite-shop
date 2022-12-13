@@ -53,8 +53,8 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
 
         {cartItems.map(product => {
           return (
-          <>
             <ProductOnBag key={product.id}>
+              
               <ImageContainer>
                 <Image src={product.imageUrl} width={95} height={90} alt='' />
               </ImageContainer>
@@ -66,7 +66,6 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
                 }}>Remover</button>
               </div>
             </ProductOnBag>
-           </>
           )
         })}
 

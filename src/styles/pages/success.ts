@@ -1,5 +1,4 @@
 import { styled } from "@stitches/react";
-import { NodeNextRequest } from "next/dist/server/base-http/node";
 
 export const SucessContainer = styled('main', {
   height: 550,
@@ -9,9 +8,13 @@ export const SucessContainer = styled('main', {
   alignItems: "center",
   margin: '0 auto',
 
+  h1: {
+    marginTop: 48
+  },
+
   p: {
     maxWidth: 550,
-    marginTop: 32,
+    marginTop: 24,
 
     fontSize: 18,
     textAlign: "center",
@@ -36,16 +39,29 @@ export const SucessContainer = styled('main', {
 })
 
 export const ImageContainer = styled('div', {
-  marginTop: 64,
-  width: '100%',
-  maxWidth: 130,
-  height: 145,
+  width: 130,
+  position: "relative", 
+  height: 130,
   display: "flex",
   alignItems: "center",
+  justifyContent: "center",
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
-  borderRadius: 8,
+  borderRadius: '50%',
 
   img: {
     objectFit: "cover",
+  }
+})
+
+export const ProductsContainer = styled('div', {
+  width: '100%',
+  position: 'relative', 
+  display: "flex",
+  alignItems: "center",
+  justifyContent:"center",
+
+  'div + div': {
+    marginLeft: -45,
+    boxShadow: '2px 0px 40px #000',
   }
 })

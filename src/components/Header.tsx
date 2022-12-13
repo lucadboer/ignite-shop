@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/router";
 import { Handbag } from "phosphor-react";
 import { useState } from "react";
 
@@ -10,6 +11,8 @@ import { HeaderContainer } from "../styles/Header";
 import { BagMenu } from "./BagMenu";
 
 export function Header() {
+
+  const { pathname } = useRouter()
 
   const [isBagOpen, setIsBagOpen] = useState(false)
 
@@ -29,14 +32,16 @@ export function Header() {
     <Link href={'/'}>
       <Image src={logoIgnite.src} width={129.74} height={52} alt="" />
     </Link>
-    <button onClick={handleOpenBag}>
-      <Handbag size={24} color='#fff' />
-      {quantity ? (
-      <span>
-        {quantity}
-      </span>
-      ) : ''}
-    </button>
+    {pathname !== '/success' ? (
+      <button onClick={handleOpenBag}>
+        <Handbag size={24} color='#fff' />
+        {quantity ? (
+        <span>
+          {quantity}
+        </span>
+        ) : ''}
+      </button>
+    ) : <></>}
 
     {isBagOpen ? <BagMenu onBagOpen={handleOpenBag} /> : <></>}
 
