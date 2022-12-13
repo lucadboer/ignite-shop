@@ -2,6 +2,7 @@ import { GetStaticProps } from "next"
 import Head from "next/head"
 import Image from "next/image"
 import { useRouter } from "next/router"
+import { toast } from "react-toastify"
 
 import Stripe from "stripe"
 import { Skeleton } from "../../components/Skeleton"
@@ -31,8 +32,12 @@ export default function Product({ product }: ProductProps) {
   function handleAddItemToCart(item: ProductData ) {
     const check = checkIfItemAlreadyExists(item.id)
     if (check) {
-      return alert('Item já está no carrinho')
+      return toast.info('Produto já na sacola')
     }
+
+    toast.success('Produto adicionado na sacola!', {
+      pauseOnFocusLoss: false
+    })
 
     addToCart(item)  
   }

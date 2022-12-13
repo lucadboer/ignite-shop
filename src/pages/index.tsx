@@ -15,7 +15,7 @@ import { HomeContainer, ProductContainer } from "../styles/pages/home"
 import { Handbag } from "phosphor-react"
 import { Product } from "../contexts/CartContext"
 import { useCart } from "../hooks/useCart"
-
+import { toast } from "react-toastify"
 
 interface HomeProps {
   products: Product[]
@@ -37,11 +37,15 @@ export default function Home({products}: HomeProps) {
   function handleAddItemToCart(item: Product) {
     const check = checkIfItemAlreadyExists(item.id)
     if (check) {
-      return alert('Item já está no carrinho')
+      return toast.info('Produto já está na sacola')
     }
 
     addToCart(item)
-  }  
+
+    toast.success('Produto adicionado na sacola!', {
+      pauseOnFocusLoss: false
+    })
+}
 
   return (
     <>
