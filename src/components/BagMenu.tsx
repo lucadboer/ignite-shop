@@ -82,7 +82,7 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
           <strong>{formattedMoney(productsTotal / 100)}</strong>
         </main>
 
-        <button onClick={handleBuyProduct} disabled={!cartItems}>Finalizar a compra</button>
+        <button onClick={handleBuyProduct} disabled={cartItems.length === 0}>Finalizar a compra</button>
       </footer>
     </BagMenuContainer>
   )
