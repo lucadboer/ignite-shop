@@ -6,6 +6,7 @@ import { useCart } from "../hooks/useCart";
 import { formattedMoney } from "../utils/formatter";
 import { BagEmpity } from "./BagEmpity";
 import axios from "axios";
+import { useState } from "react";
 
 interface BagMenuProps {
   onBagOpen: () => void
@@ -13,10 +14,11 @@ interface BagMenuProps {
 
 export function BagMenu({ onBagOpen }: BagMenuProps) {
   const { removeFromCart, cartItems, sumAllValues } = useCart()
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false)
 
   async function handleBuyProduct() {
     try {
-      // setIsCreatingCheckoutSession(true)
+      setIsCreatingCheckoutSession(true)
       const response = await axios.post('/api/checkout', {
         products: cartItems,
       })
@@ -25,8 +27,8 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
 
       window.location.href = checkoutUrl
     } catch (error) {
-      // setIsCreatingCheckoutSession(false)
-      console.log(error);
+      setIsCreatingCheckoutSession(false)
+      alert('Não foi possível ir para o checkout')
       
     }      
   }
@@ -82,7 +84,9 @@ export function BagMenu({ onBagOpen }: BagMenuProps) {
           <strong>{formattedMoney(productsTotal / 100)}</strong>
         </main>
 
-        <button onClick={handleBuyProduct} disabled={cartItems.length === 0}>Finalizar a compra</button>
+        <button onClick={handleBuyProduct} disabled={isCreatingCheckoutSession || cartItems.length === 0}>
+          {isCreatingCheckoutSession ? 'Carregando...' : 'Finalizar a compra'}
+        </button>
       </footer>
     </BagMenuContainer>
   )

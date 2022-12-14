@@ -2,7 +2,6 @@ import type { AppProps } from 'next/app'
 import { Container } from '../styles/pages/app'
 
 import { globalStyles } from '../styles/global'
-import '../styles/spinner.css'
 import { CartContextProvider } from '../contexts/CartContext'
 import { Header } from '../components/Header'
 import { ToastContainer } from 'react-toastify'
@@ -24,7 +23,7 @@ export default function App({ Component, pageProps }: AppProps) {
         closeOnClick
         rtl={false}
         draggable
-        theme="dark"
+        theme="light"
       />
         <Header />
         <Component {...pageProps} />

@@ -61,9 +61,14 @@ export const BagMenuContainer = styled('div', {
       cursor: 'pointer',
       transition: 'background 0.2s',
 
-      '&:hover': {
+      '&:not(:disabled):hover': {
         background: '$green300',
-      }
+      },
+
+      '&:disabled': {
+        opacity: 0.6,
+        cursor: 'not-allowed',
+      },
     }
   }
 })
@@ -124,7 +129,6 @@ export const ProductOnBag = styled('div', {
       '&:hover': {
         color: '$green300',
       },
-
     }
   }
 })
