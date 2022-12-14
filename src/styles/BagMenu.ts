@@ -98,6 +98,7 @@ export const ProductContainer = styled('div', {
 
 export const ProductOnBag = styled('div', {
   marginTop: 32,
+  marginRight: 8,
   display: "flex",
   alignItems: 'center',
   gap: '1.25rem',

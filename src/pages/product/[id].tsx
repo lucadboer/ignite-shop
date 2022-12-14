@@ -35,9 +35,7 @@ export default function Product({ product }: ProductProps) {
       return toast.info('Produto já na sacola')
     }
 
-    toast.success('Produto adicionado na sacola!', {
-      pauseOnFocusLoss: false
-    })
+    toast.success('Produto adicionado na sacola!')
 
     addToCart(item)  
   }

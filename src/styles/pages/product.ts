@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "..";
 
 export const ProductContainer = styled('main', {
   display: 'grid',
@@ -7,7 +7,17 @@ export const ProductContainer = styled('main', {
   gap: '4.5rem',
 
   maxWidth: 1180,
-  margin: '0 auto'
+  margin: '0 auto',
+
+  '@sm': {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+
+  '@lg': {
+    padding: '1rem',
+  }
 })
 
 export const SkeletonContainer = styled('div', {
@@ -24,13 +34,6 @@ export const SkeletonContainer = styled('div', {
     display: 'flex',
     flexDirection: 'column',
     gap: 15,
-
-    // div: {
-    //   marginTop: 40,
-    //   display: 'flex',
-    //   flexDirection: 'column',
-    //   gap: 15,
-    // }
   },
 },
   )
@@ -45,6 +48,20 @@ export const ImageContainer = styled('section', {
   background: 'linear-gradient(180deg, #1ea483 0%, #7465d4 100%)',
   boxShadow: '2px 2px 30px #000',
   borderRadius: 8,
+
+  '@sm': {
+    height: 500,
+  },
+
+  '@md': {
+    width: 400,
+    height: 400,
+  },
+
+  '@lg': {
+    width: 400,
+    height: 400,
+  },
 
   img: {
     objectFit: "cover"
@@ -68,11 +85,18 @@ export const ProductDetails = styled('section', {
   },
 
   p: {
-    maxWidth: 520,
+    maxWidth: 600,
     fontSize: '$md',
     color: '$gray300',
     lineHeight: 1.6,
     marginTop: '2.5rem'
+  },
+
+  '@md': {
+    'p + p': {
+      display: "none",
+      opacity: 0
+    }
   },
 
   button: {
@@ -86,6 +110,18 @@ export const ProductDetails = styled('section', {
     borderRadius: 8,
     cursor: "pointer",
     transition: 'all 0.25s',
+
+    '@sm': {
+      marginTop: 40
+    },
+ 
+    '@md': {
+      marginTop: 40
+    },
+
+    '@lg': {
+      marginTop: 30
+    },
 
     '&:hover': {
       background: '$green300',

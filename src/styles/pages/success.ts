@@ -1,4 +1,4 @@
-import { styled } from "@stitches/react";
+import { styled } from "..";
 
 export const SucessContainer = styled('main', {
   height: 550,

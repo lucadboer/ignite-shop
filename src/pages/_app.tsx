@@ -20,6 +20,7 @@ export default function App({ Component, pageProps }: AppProps) {
         hideProgressBar={false}
         newestOnTop={false}
         pauseOnFocusLoss={false}
+        pauseOnHover={false}
         closeOnClick
         rtl={false}
         draggable
