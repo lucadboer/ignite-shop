@@ -30,7 +30,7 @@ This application was developed through a Rocketseat challenge, where the purpose
 - API Consumption
 - HTTP manipulations (get | post)
 
-## How to use?
+## 🪄 How to use?
 
 ### Abra o terminal e copie este repositório em alguma pasta com o comando | Open terminal and copy this repository at some dir with the comand
 ```
