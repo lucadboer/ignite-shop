@@ -20,11 +20,13 @@ This application was developed through a Rocketseat challenge, where the purpose
 ## 🧑‍💻 Applications
 
 - React Hooks
+- Context API
+- Ambient Variables hosted in the Vercel
 - Immutability
-- React Router Dom
-- React Hook Form
 - Props
 - Components
+- SSG and SSR
+- Next Routes
 - API Consumption
 
 ## How to use?
