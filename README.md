@@ -44,7 +44,7 @@ $ cd ignite-shop
 
 ```
 $ npm install
-ou
+or
 $ yarn install
 ```
 
@@ -52,7 +52,7 @@ $ yarn install
 
 ```
 $ npm run dev
-ou
+or
 $ yarn run dev
 ```
 
