@@ -28,6 +28,7 @@ This application was developed through a Rocketseat challenge, where the purpose
 - SSG and SSR
 - Next Routes
 - API Consumption
+- HTTP manipulations (get | post)
 
 ## How to use?
 
