@@ -75,9 +75,9 @@ export const BagMenuContainer = styled('div', {
 
 export const CloseButton = styled('button', {
   position: "absolute",
-  width: 0,
   top: -20,
-  right: -380,
+  right: 0,
+  bottom: 0,
   background: "transparent",
   border: 0,
   color: '$gray300',
