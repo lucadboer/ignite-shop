@@ -5,7 +5,7 @@ export function BagEmpity() {
   return (
     <BagEmpityContainer>
       <p>Parece que seu carrinho está vazio</p>
-      <SmileySad size={110}  />
+      <SmileySad size={110} alt='iconSad' />
     </BagEmpityContainer>
   )
 }
