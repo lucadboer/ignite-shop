@@ -62,7 +62,7 @@ $ yarn run dev
 
 ### Depois desses processos acesse http://localhost:3000 no seu navegador. | After this proccess access http://localhost:3000 in your browser
 
-### Para os testes rode | for the tests run *** still in development ***
+## Para os testes rode | for the tests run *** still in development ***
 
 ```
 $ npm run test
